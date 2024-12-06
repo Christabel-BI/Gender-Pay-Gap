@@ -1,4 +1,4 @@
-# Research report on Gender pay gap and Equal pay of a Firm using R statistical package
+# Research on Gender pay gap and Equal pay of a Firm using R statistical package
 This project analyzes the gender pay gap and equal pay within a UK firm, using statistical methods in R to uncover disparities in salaries and bonuses. Key findings include:
 
 Gender Pay Gap in Salaries:
@@ -18,6 +18,7 @@ Men earn higher salaries on average, regardless of tenure or position.
 #### File containing full details of the report and analysis is added in the repsitory.
 
 ## R codes used for ETL, EDA, Data Visualisation and Statistical Analysis
+```R
 library(readxl) 
 library(ggplot2)
 library(dplyr)  
@@ -25,13 +26,13 @@ library(broom)
 library(skimr)
 library(RColorBrewer)
 
-### set the working directory 
-setwd("C:/Users/HP/Documents/BI Assignment")
+## set the working directory 
+setwd("C:/Users/HP/Documents/Portfolio")
 
-#### Importing data into R 
+## Importing data into R 
 firm <- read_excel("firm_05 (1).xlsx")
 
- ## Data Inspection 
+## Data Inspection 
 str(firm)
 summary(firm)
 skim(firm)
@@ -50,34 +51,34 @@ firm$gender <- recode_factor(firm$gender,'Female' = "female")
 table(firm$gender,useNA = "ifany")
 
 
-### replacing  missing values with 0 
+## replacing  missing values with 0 
 firm[is.na(firm)] <- 0
 firm %>% filter(!complete.cases(.))
 
 View(firm)
 
-##  data manipulation / data transformation ###
-### changing tenure from months to years# 
+##  data manipulation / data transformation 
+## changing tenure from months to years
 firm <- firm %>% mutate (tenure = tenure/12)
 
-### changing FTE from decimal to percentage of full time working hours #
+## changing FTE from decimal to percentage of full time working hours #
 firm <- firm %>% mutate(FTE = FTE*100) 
 
-### creating a new variable 
+## creating a new variable 
 firm <-  firm %>% mutate(contract_hour = FTE/100*40)
 firm <- firm %>% mutate(contract = if_else(FTE == 100,"full_time","part_time"))
 table(firm$FTE,firm$contract)
 table(firm$gender,firm$contract)
 View(firm)
 
-### changing variable type 
+## changing variable type 
 firm$gender <- as.factor(firm$gender)
 firm$qualification <- as.factor(firm$qualification)
 firm$position <- as.factor(firm$position)
 firm$contract <- as.factor(firm$contract)
 
 
-#### descriptive statistics grouped by gender 
+## descriptive statistics grouped by gender 
 firm %>% group_by(gender) %>% 
   summarise (Lower = min(salary),
           Average = mean(salary),
@@ -174,7 +175,7 @@ fig9
 
 
 ## Regression Analysis 
-### Statistical Analysis of Equal pay 
+## Statistical Analysis of Equal pay 
 regression1 <- lm(salary ~ gender,data  = firm)
 summary(regression1)
 
@@ -192,7 +193,7 @@ fig10 <- ggplot(reg2_pred, aes(x = salary, y = .fitted, colour= gender)) +
   theme(legend.position = "bottom", legend.title = element_blank(), panel.background = element_blank()) + 
   ylab("predicted gender pay") + xlab("Monthly salary") + 
   scale_y_continuous()
-fig10
+fig10```
 
 
 
