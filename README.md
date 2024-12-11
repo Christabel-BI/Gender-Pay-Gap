@@ -19,10 +19,10 @@ Men earn higher salaries on average, regardless of tenure or position.
 - <a href= "https://github.com/Christabel-BI/Gender-Pay-Gap/blob/main/Gender%20pay%20Data.xlsx">Firm Data<a/>
 
 
-### Report File with full details
+### Report File with visualization and full details
 - <a href= "https://github.com/Christabel-BI/Gender-Pay-Gap/blob/main/Gender%20pay%20gap%20and%20Equal%20pay.pdf">Report File<a/>
 
-## R codes used for ETL, EDA, Data Visualisation and Statistical Analysis
+### R codes used for ETL, EDA, Data Visualisation and Statistical Analysis
 ```R
 library(readxl) 
 library(ggplot2)
