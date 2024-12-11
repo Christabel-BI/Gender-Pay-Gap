@@ -16,6 +16,7 @@ Equal Pay:
 Men earn higher salaries on average, regardless of tenure or position.
 
 #### Dataset used
+- <a href= "https://github.com/Christabel-BI/Gender-Pay-Gap/blob/main/Gender%20pay%20Data.xlsx">Firm Data<a/>
 
 
 #### File containing full details of the report and analysis is added in the repsitory.
